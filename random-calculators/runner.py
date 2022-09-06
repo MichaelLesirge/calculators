@@ -3,7 +3,9 @@ EXIT_KEYWORDS= ("exit", "ex", "leave", "quit")
 
 def run(function, inputs):
     """
-    funtnion should return answer.
+    no type hinting since it's old version of python on calcultor
+
+    function should return answer.
     inputs: list[tuple[string, (callable, str|None)|None]]
     inputs ex: [("Enter a number", (int, "input most be a number"))]
     what inputs do [("input message" + ": ", (converter_funtion, "Error message if converter fails" or None to use normal error message) or None to just leave as str)]
