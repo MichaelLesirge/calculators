@@ -39,7 +39,7 @@ class Term:
     """
     __slots__ = ("coefficient", "bases_exponents")
 
-    def __init__(self, value=None, *, coefficient: int|float = 0, bases_exponents: dict[str: int or float] = None):
+    def __init__(self, value=None, *, coefficient: int|float = 0, bases_exponents: dict[str: int|float] = None):
         """
         example:
         coefficient = 4
