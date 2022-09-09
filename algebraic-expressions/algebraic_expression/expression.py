@@ -95,12 +95,12 @@ class Expression:
             plus = True
         return final
 
-    def var_equals(self, variables: dict[str: int]) -> int:
+    def var_equals(self, variables: dict[str: int]) -> "Expression":
         """
         variables dict must contain all variables that are in equation
         runs the equation with eval and returns answer
         """
-        return eval(self.str_equation(), variables)
+        return Expression(eval(self.str_equation(), variables))
 
     def distribute(self, other) -> "Expression" or list["Expression"]:
         """
