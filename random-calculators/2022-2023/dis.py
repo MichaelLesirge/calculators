@@ -23,7 +23,7 @@ while True:
     print("sqrt(sq(%s) + sq(%s))" % (x, y))
     x, y = sint(sq(x1-x2)), sint(sq(y1-y2))
     print("sqrt(%s + %s)" % (x, y))
-    a = sint(sq(x1-x2) + sq(y1-y2))
+    a = sint(x + y)
     print("sqrt(%s)" % (a))
     a = sint(sqrt(a))
     print("%s" % a)
