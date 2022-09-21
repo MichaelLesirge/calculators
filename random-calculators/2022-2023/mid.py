@@ -3,7 +3,7 @@ def sq(x):
 
 def sqrt(x):
     if x < 0:
-        raise Exception("Can no square negitive number %s" % x)
+        raise Exception("Can not square root negitive number %s" % x)
     return (x)**0.5
 
 while True:
