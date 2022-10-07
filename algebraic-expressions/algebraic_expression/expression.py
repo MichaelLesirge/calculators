@@ -65,6 +65,8 @@ class Expression:
         plus adds a plus sign at beginning if there is no negative sign
         html replace x**n with x<sup>n</sup> for displaying on webpages
         """
+        
+        if len(self.terms) == 0: return "0"
 
         final = []
         if braces:
