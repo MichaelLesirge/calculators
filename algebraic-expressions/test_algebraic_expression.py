@@ -87,7 +87,7 @@ class TestExpression(unittest.TestCase):
         self.assertFalse(Expr("8x**3y+6x**2+4y+z") == expr1)
         self.assertFalse(Expr("8x**3y+6x**2+3y+z") != expr1)
 
-        self.assertIsNotNone(hash(expr1), any)
+        self.assertIsNotNone(hash(expr1))
 
     def test_quadratic_equation(self):
         self.assertTrue(Expr("5x**2-6x+1").is_quadratic_equation)
