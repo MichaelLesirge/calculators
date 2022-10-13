@@ -59,13 +59,16 @@ class Expression:
         # Expressions are imutable
         self.terms: tuple[Term] = tuple(terms)
 
+    def copy(self):
+        return Expression(terms=self.terms)
+
     def str_plus(self, *, plus=False, braces=False, sep="", html=False, up_symbol="**", **kwargs):
         """
         gives options for how you want string to look
         plus adds a plus sign at beginning if there is no negative sign
         html replace x**n with x<sup>n</sup> for displaying on webpages
         """
-        
+
         if len(self.terms) == 0: return "0"
 
         final = []
@@ -97,7 +100,7 @@ class Expression:
             plus = True
         return final
 
-    def var_equals(self, variables: dict[str: int]) -> "Expression":
+    def eval(self, variables: dict[str: int|float]) -> "Expression":
         """
         variables dict must contain all variables that are in equation
         runs the equation with eval and returns answer
@@ -110,7 +113,7 @@ class Expression:
         if it is a function it runs it on all values
         """
         if callable(other):
-            return Expression(terms=list(map(other, self.terms)))
+            return Expression(terms=map(other, self.terms))
         elif isinstance(other, (Term, int, float)):
             return Expression(terms=[(term * other) for term in self.terms])
         elif isinstance(other, Expression):
