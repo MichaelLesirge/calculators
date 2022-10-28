@@ -181,6 +181,27 @@ class Expression:
             right_div =round(right_div, round_to)
         return {left_div, right_div}
 
+    def all_bases(self) -> set[str]:
+        v = set()
+        for term in self:
+            v.update(term.bases)
+        return v
+
+    @cache
+    @property
+    def is_monomial(self) -> bool:
+        return len(self.all_bases()) == 1
+
+    @cache
+    @property
+    def _get_base(self) -> str:
+        return self.all_bases().pop()
+
+    def set_eqaul(self, v) -> int:
+        if self.is_monomial:
+            raise ValueError("Expression must be monomial to use this method")
+        return self.eval({self._get_base: v})
+
     def __contains__(self, item) -> bool:
         """
         checks if terms is in expression
