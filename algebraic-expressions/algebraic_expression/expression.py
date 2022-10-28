@@ -187,13 +187,13 @@ class Expression:
             v.update(term.bases)
         return v
 
-    @cache
     @property
+    @cache
     def unique_bases_count(self) -> bool:
         return len(self.unique_bases())
 
-    @cache
     @property
+    @cache
     def _get_base(self) -> str:
         return self.unique_bases().pop()
 
