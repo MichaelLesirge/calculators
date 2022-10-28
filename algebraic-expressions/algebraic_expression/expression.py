@@ -189,8 +189,8 @@ class Expression:
 
     @cache
     @property
-    def is_monomial(self) -> bool:
-        return len(self.all_bases()) == 1
+    def unique_bases(self) -> bool:
+        return len(self.all_bases())
 
     @cache
     @property
@@ -198,7 +198,7 @@ class Expression:
         return self.all_bases().pop()
 
     def set_eqaul(self, v) -> int:
-        if self.is_monomial:
+        if self.unique_bases == 1:
             raise ValueError("Expression must be monomial to use this method")
         return self.eval({self._get_base: v})
 
