@@ -181,7 +181,7 @@ class Expression:
             right_div =round(right_div, round_to)
         return {left_div, right_div}
 
-    def all_bases(self) -> set[str]:
+    def unique_bases(self) -> set[str]:
         v = set()
         for term in self:
             v.update(term.bases)
@@ -189,16 +189,16 @@ class Expression:
 
     @cache
     @property
-    def unique_bases(self) -> bool:
-        return len(self.all_bases())
+    def unique_bases_count(self) -> bool:
+        return len(self.unique_bases())
 
     @cache
     @property
     def _get_base(self) -> str:
-        return self.all_bases().pop()
+        return self.unique_bases().pop()
 
     def set_eqaul(self, v) -> int:
-        if self.unique_bases == 1:
+        if self.unique_bases_count == 1:
             raise ValueError("Expression must be monomial to use this method")
         return self.eval({self._get_base: v})
 
