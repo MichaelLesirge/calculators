@@ -197,7 +197,7 @@ class Expression:
     def _get_base(self) -> str:
         return self.unique_bases().pop()
 
-    def set_eqaul(self, v) -> int:
+    def set_eqaul(self, v: int|float) -> int:
         if self.unique_bases_count != 1:
             raise ValueError("Expression must be monomial to use this method")
         return self.eval({self._get_base: v})
