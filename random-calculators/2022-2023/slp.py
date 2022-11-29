@@ -1,5 +1,6 @@
 from helper import sint
 
+
 def slp(x1, y1, x2, y2):
     print("(%s - %s) / (%s - %s)" % (y2, y1, x2, x1))
     t, b = y2 - y1, x2 - x1
@@ -13,7 +14,6 @@ def slp(x1, y1, x2, y2):
     return s
 
 
-
 while True:
     x1 = sint(input("x1: "))
     y1 = sint(input("y1: "))
@@ -22,5 +22,3 @@ while True:
 
     s = slp(x1, y1, x2, y2)
     print()
-
-    

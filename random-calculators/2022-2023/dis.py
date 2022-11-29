@@ -1,12 +1,15 @@
 from helper import sint
 
+
 def sq(x):
     return (x)**2
+
 
 def sqrt(x):
     if x < 0:
         raise Exception("Can not square root negitive number %s" % x)
     return (x)**0.5
+
 
 def dis(x1, y1, x2, y2):
     print("sqrt(sq(%s - %s) + sq(%s - %s))" % (x2, x1, y2, y1))
@@ -18,6 +21,7 @@ def dis(x1, y1, x2, y2):
     print("sqrt(%s)" % (a))
     a = sint(sqrt(a))
     print(a)
+
 
 while True:
     x1 = sint(input("x1: "))
