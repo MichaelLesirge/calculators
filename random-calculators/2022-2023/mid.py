@@ -14,6 +14,5 @@ while True:
     x2 = sint(input("x2: "))
     y2 = sint(input("y2: "))
 
-
-    
+    m = mid(x1, y1, x2, y2)
     print()

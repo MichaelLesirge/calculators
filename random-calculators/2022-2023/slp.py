@@ -9,7 +9,7 @@ def slp(x1, y1, x2, y2):
     except ZeroDivisionError:
         s = "undifined"
     print(s)
-    
+
     return s
 
 
@@ -21,7 +21,6 @@ while True:
     y2 = sint(input("y2: "))
 
     s = slp(x1, y1, x2, y2)
-
     print()
 
     
