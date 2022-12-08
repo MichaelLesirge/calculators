@@ -13,4 +13,9 @@ def gcd(x, y):
 def simplify(x, y):
   divisor = gcd(x, y)
   return (x / divisor, y / divisor)
-    
+
+def get_sint(prompt):
+    return sint(eval(input(prompt + ": ")))
+
+def get_point(point_num, prefix=""):
+    return get_sint("%sx%s" % (prefix, point_num)), get_sint("%sy%s" % (prefix, point_num))

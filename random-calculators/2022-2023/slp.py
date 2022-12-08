@@ -1,4 +1,4 @@
-from helper import sint, gcd
+from helper import sint, gcd, get_point
 
 def slp(x1, y1, x2, y2):
     print("(%s - %s) / (%s - %s)" % (y2, y1, x2, x1))
@@ -28,10 +28,8 @@ def slp(x1, y1, x2, y2):
 
 
 while True:
-    x1 = sint(input("x1: "))
-    y1 = sint(input("y1: "))
-    x2 = sint(input("x2: "))
-    y2 = sint(input("y2: "))
+    x1, y1 = get_point("1")
+    x2, y2 = get_point("2")
 
     s = slp(x1, y1, x2, y2)
     print()

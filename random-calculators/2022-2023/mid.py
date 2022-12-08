@@ -1,4 +1,4 @@
-from helper import sint
+from helper import sint, get_point
 
 
 def mid(x1, y1, x2, y2):
@@ -11,10 +11,8 @@ def mid(x1, y1, x2, y2):
 
 
 while True:
-    x1 = sint(input("x1: "))
-    y1 = sint(input("y1: "))
-    x2 = sint(input("x2: "))
-    y2 = sint(input("y2: "))
+    x1, y1 = get_point("1")
+    x2, y2 = get_point("2")
 
     m = mid(x1, y1, x2, y2)
     print()

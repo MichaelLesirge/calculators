@@ -1,7 +1,7 @@
-from helper import get_point, sint, simplify
+from helper import get_point, get_sint, sint, simplify
 
 while True:
-    m = sint(eval(input("m: ")))
+    m = get_sint("m")
 
     x, y = get_point("", "p")
 
