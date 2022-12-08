@@ -1,4 +1,4 @@
-from helper import sint, gcd
+from helper import sint, gcd, get_point
 
 def slp(x1, y1, x2, y2):
     print("(%s - %s) / (%s - %s)" % (y2, y1, x2, x1))
@@ -45,12 +45,15 @@ def mkycep(x1, y1, x2, y2):
     print("b = %s" % b)
     print("y = %sx + %s" % (m, b))
 
+    input()
+
+    print("x = 0, y = %s" % b)
+    print("x = %s, y = 0" % sint((-b) / m))
+
 
 while True:
-    x1 = sint(input("x1: "))
-    y1 = sint(input("y1: "))
-    x2 = sint(input("x2: "))
-    y2 = sint(input("y2: "))
+    x1, y1 = get_point("1")
+    x2, y2 = get_point("2")
 
     s = mkycep(x1, y1, x2, y2)
     print()
