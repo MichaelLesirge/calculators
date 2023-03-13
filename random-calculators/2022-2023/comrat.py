@@ -1,26 +1,22 @@
 from helper import get_sint, sint, gcd, simplify
 
 def s(x):
-    return (sint(x[0]), sint(x[2]))
+    return (sint(x[0]), sint(x[1]))
 
 while True:
-    a1 = get_sint("a1")
-    b1 = get_sint("b1")
-    c1 = get_sint("c1")
+    vs = []
+    for c in "abc":
+        v1 = get_sint(c + "1")
+        v2 = get_sint(c + "2")
+        
+        r = s(simplify(v1, v2))
+        
+        vs.append(r)
     
-    a2 = get_sint("a2")
-    b2 = get_sint("b2")
-    c2 = get_sint("c2")
+        print("%s: %s:%s -> %s:%s (%s) " % (c, v1, v2, *r, gcd(v1, v2)))
 
-    ra = s(simplify(a1, a2))
-    print("a: %s:%s -> %s:%s (%s) " % (a1, a2, *ra, gcd(a1, a2)))
-    rb = s(simplify(b1, b2))
-    print("b: %s:%s -> %s:%s (%s) " % (b1, b2, *rb, gcd(b1, b2)))
-    rc = s(simplify(c1, c2))
-    print("c: %s:%s -> %s:%s (%s) " % (c1, a2, *ra, gcd(a1, a2)))
-    
-    if ra == rb == rc:
-        print("simarlar %s:%s" % ra)
+    if vs[0] == vs[1] == vs[2]:
+        print("simarlar %s:%s" % vs[0])
     else:
         print("not simalar")
 
