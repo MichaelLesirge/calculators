@@ -1,3 +1,5 @@
+from math import sqrt
+
 def sint(x):
     x = float(x)
     if str(x)[-2:] == ".0" or x % 1 <= 0.00000000000001:
@@ -15,7 +17,7 @@ def simplify(x, y):
   return (x / divisor, y / divisor)
 
 def get_sint(prompt):
-    return sint(eval(input(prompt + ": ")))
+    return sint(eval(input(prompt + ": "), {"sqrt": sqrt}))
 
 def get_point(point_num, prefix=""):
     return get_sint("%sx%s" % (prefix, point_num)), get_sint("%sy%s" % (prefix, point_num))
