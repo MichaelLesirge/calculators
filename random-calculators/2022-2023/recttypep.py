@@ -13,12 +13,12 @@ def slp(p1, p2, pre):
         a = sint((p2[1] - p1[1]) / (p2[0] - p1[0]))
     except ZeroDivisionError:
         a = float("NaN")
-    print("%s: (%s - %s) / (%s - %s) = %s" % (pre, p2[1], p1[1], p2[0], p1[0], a))
+    print("%s: (%s-%s)/(%s-%s) = %s" % (pre, p2[1], p1[1], p2[0], p1[0], a))
     return a
 
 def dis(p1, p2, pre):
     a = sint(sqrt(sq(p2[0]-p1[0]) + sq(p2[1]-p2[1])))
-    print("%s: sqrt(sq(%s - %s) + sq(%s - %s)) = %s" % (pre, p2[0], p1[0], p2[1], p2[1], a))
+    print("%s: sqrt(sq(%s-%s)+sq(%s-%s)) = %s" % (pre, p2[0], p1[0], p2[1], p2[1], a))
     return a
 
 
@@ -28,14 +28,14 @@ c = get_point("", "b")
 d = get_point("", "d")
 print()
 ab_slp = slp(a, b, "ab")
-ad_slp = slp(a, d, "ad")
-dc_slp = slp(d, c, "dc")
 bc_slp = slp(b, c, "bc")
+cd_slp = slp(c, d, "cd")
+da_slp = slp(d, a, "da")
 input()
 ab_dis = dis(a, b, "ab")
-ad_dis = dis(a, d, "ad")
-dc_dis = dis(d, c, "dc")
 bc_dis = dis(b, c, "bc")
+cd_dis = dis(c, d, "cd")
+da_dis = dis(d, a, "da")
 input()
 # Rect Shape:
 #  a - b
@@ -47,16 +47,23 @@ input()
 # Rectangle: Opposite sides are Congruent; Slopes of opposite sides make perpendicular lines
 # Square: All sides are Congruent; Slopes of opposite sides make perpendicular lines
 
-if ab_slp == dc_slp and ad_slp == bc_slp:
-    if ab_dis == dc_dis and ad_dis == bc_dis:
-        if ab_dis == ad_dis:
-            print("Square")
-        else:
-            print("Rectangle")
-    elif ab_dis == ad_dis and dc_dis == bc_dis:
-        print("Rhombus")
-    else:
-        print("Parallelogram")
+is_para = False
+is_rhom = False
+is_rect = False
+if ab_dis == cd_dis and da_dis == bc_dis:
+    is_para = True
+    if ab_dis == da_dis == cd_dis == bc_dis:
+        is_rhom = True
+    if (ab_slp * da_slp == -1 or (ab_slp == 0 and da_slp == float("NaN")) or (ab_slp == float("NaN") and da_slp == 0)) and (bc_slp * cd_slp == -1 or (bc_slp == 0 and cd_slp == float("NaN")) or (bc_slp == float("NaN") and cd_slp == 0)):
+        is_rect = True
+
+if is_rhom and is_rect:
+    print("Square")
+elif is_rhom:
+    print("Rhombus")
+elif is_rect:
+    print("Rectangle")
+elif is_para:
+    print("Parallelogram")
 else:
     print("Quadrilateral")
-
