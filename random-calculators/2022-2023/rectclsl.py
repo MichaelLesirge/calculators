@@ -9,27 +9,33 @@ def sqrt(x):
     return (x)**0.5
 
 def slp(p1, p2, pre):
+    x1, y1 = p1
+    x2, y2 = p2
     try:
-        a = sint((p2[1] - p1[1]) / (p2[0] - p1[0]))
+        m = sint((y2-y1)/(x2-x1))
     except ZeroDivisionError:
-        a = float("NaN")
-    print("%s: (%s-%s)/(%s-%s) = %s" % (pre, p2[1], p1[1], p2[0], p1[0], a))
-    return a
+        m = float("NaN")
+    print("%s: (%s-%s)/(%s-%s) = %s" % (pre, y2, y1, x2, x1, m))
+    return m
 
 def dis(p1, p2, pre):
-    a = sint(sqrt(sq(p2[0]-p1[0]) + sq(p2[1]-p2[1])))
-    print("%s: sqrt(sq(%s-%s)+sq(%s-%s)) = %s" % (pre, p2[0], p1[0], p2[1], p2[1], a))
-    return a
+    x1, y1 = p1
+    x2, y2 = p2
+    d = sint(sqrt(sq(x2-x1) + sq(y2-y1)))
+    print("%s: sqrt(sq(%s-%s)+sq(%s-%s)) = %s" % (pre, x2, x1, y2, y1, d))
+    return d
 
+al, bl, cl, dl = list((input("letters: ") or "abcd").upper())
 
-ab_slp = get_sint("ab slp")
-bc_slp = get_sint("bc slp")
-cd_slp = get_sint("cd slp")
-da_slp = get_sint("da slp")
-ab_dis = get_sint("ab dis")
-bc_dis = get_sint("bc dis")
-cd_dis = get_sint("cd dis")
-da_dis = get_sint("da dis")
+ab_slp = get_sint("%s slp" % (al+bl))
+bc_slp = get_sint("%s slp" % (bl+cl))
+cd_slp = get_sint("%s slp" % (cl+dl))
+da_slp = get_sint("%s slp" % (dl+al))
+ab_dis = get_sint("%s dis" % (al+bl))
+bc_dis = get_sint("%s dis" % (bl+cl))
+cd_dis = get_sint("%s dis" % (cl+dl))
+da_dis = get_sint("%s dis" % (dl+al))
+
 # Rect Shape:
 #  a - b
 #  |   |

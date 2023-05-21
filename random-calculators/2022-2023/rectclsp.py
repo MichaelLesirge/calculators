@@ -9,33 +9,38 @@ def sqrt(x):
     return (x)**0.5
 
 def slp(p1, p2, pre):
+    x1, y1 = p1
+    x2, y2 = p2
     try:
-        a = sint((p2[1] - p1[1]) / (p2[0] - p1[0]))
+        m = sint((y2-y1)/(x2-x1))
     except ZeroDivisionError:
-        a = float("NaN")
-    print("%s: (%s-%s)/(%s-%s) = %s" % (pre, p2[1], p1[1], p2[0], p1[0], a))
-    return a
+        m = float("NaN")
+    print("%s: (%s-%s)/(%s-%s) = %s" % (pre, y2, y1, x2, x1, m))
+    return m
 
 def dis(p1, p2, pre):
-    a = sint(sqrt(sq(p2[0]-p1[0]) + sq(p2[1]-p2[1])))
-    print("%s: sqrt(sq(%s-%s)+sq(%s-%s)) = %s" % (pre, p2[0], p1[0], p2[1], p2[1], a))
-    return a
+    x1, y1 = p1
+    x2, y2 = p2
+    d = sint(sqrt(sq(x2-x1) + sq(y2-y1)))
+    print("%s: sqrt(sq(%s-%s)+sq(%s-%s)) = %s" % (pre, x2, x1, y2, y1, d))
+    return d
 
+al, bl, cl, dl = list((input("letters: ") or "abcd").upper())
 
-a = get_point("", "a")
-b = get_point("", "b")
-c = get_point("", "b")
-d = get_point("", "d")
+a = get_point("", al)
+b = get_point("", bl)
+c = get_point("", cl)
+d = get_point("", dl)
 print()
-ab_slp = slp(a, b, "ab")
-bc_slp = slp(b, c, "bc")
-cd_slp = slp(c, d, "cd")
-da_slp = slp(d, a, "da")
+ab_slp = slp(a, b, al+bl)
+bc_slp = slp(b, c, bl+cl)
+cd_slp = slp(c, d, cl+dl)
+da_slp = slp(d, a, dl+al)
 input()
-ab_dis = dis(a, b, "ab")
-bc_dis = dis(b, c, "bc")
-cd_dis = dis(c, d, "cd")
-da_dis = dis(d, a, "da")
+ab_dis = dis(a, b, al+bl)
+bc_dis = dis(b, c, bl+cl)
+cd_dis = dis(c, d, cl+dl)
+da_dis = dis(d, a, dl+al)
 input()
 # Rect Shape:
 #  a - b
