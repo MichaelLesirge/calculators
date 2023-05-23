@@ -1,6 +1,6 @@
 # get what type of shape a Quadrilateral is from the 4 points
 
-from helper import get_point, sint, gcd
+from helper import get_point, sint, simplify
 
 def sq(x):
     return (x)**2
@@ -10,22 +10,27 @@ def sqrt(x):
         raise Exception("Can not square root negitive number %s" % x)
     return (x)**0.5
 
-def slp(p1, p2, pre):
+def slp(p1, p2):
     x1, y1 = p1
     x2, y2 = p2
+    x, y = x2-x1, y2-y1
     try:
-        m = sint((y2-y1)/(x2-x1))
+        m = y/x
+        x, y = simplify(x,y)
     except ZeroDivisionError:
         m = float("NaN")
-    print("%s: (%s-%s)/(%s-%s) = %s" % (pre, y2, y1, x2, x1, m))
+    print("(%s-%s)/(%s-%s) = %s/%s" % (y2, y1, x2, x1, sint(x), sint(y)))
+    print("slp: %s" % (sint(m)))
     return m
 
-def dis(p1, p2, pre):
+def dis(p1, p2):
     x1, y1 = p1
     x2, y2 = p2
-    d = sint(sqrt(sq(x2-x1) + sq(y2-y1)))
-    print("%s: sqrt(sq(%s-%s)+sq(%s-%s)) = %s" % (pre, x2, x1, y2, y1, d))
-    return d
+    d = sq(x2-x1) + sq(y2-y1)
+    ds = sqrt(d)
+    print("sqrt(sq(%s-%s)+sq(%s-%s)) = sqrt(%s)" % (x2, x1, y2, y1, sint(d)))
+    print("dis: %s" % (sint(ds)))
+    return ds
 
 al, bl, cl, dl = list((input("letters: ") or "abcd").upper())
 
@@ -33,16 +38,18 @@ a = get_point("", al)
 b = get_point("", bl)
 c = get_point("", cl)
 d = get_point("", dl)
-print()
-ab_slp = slp(a, b, al+bl)
-bc_slp = slp(b, c, bl+cl)
-cd_slp = slp(c, d, cl+dl)
-da_slp = slp(d, a, dl+al)
-input()
-ab_dis = dis(a, b, al+bl)
-bc_dis = dis(b, c, bl+cl)
-cd_dis = dis(c, d, cl+dl)
-da_dis = dis(d, a, dl+al)
+input(al+bl+": ")
+ab_slp = slp(a, b)
+ab_dis = dis(a, b)
+input(bl+cl+": ")
+bc_slp = slp(b, c)
+bc_dis = dis(b, c)
+input(cl+dl+": ")
+cd_slp = slp(c, d)
+cd_dis = dis(c, d)
+input(dl+al+": ")
+da_slp = slp(d, a)
+da_dis = dis(d, a)
 input()
 # Rect Shape:
 #  a - b

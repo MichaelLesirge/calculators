@@ -1,6 +1,6 @@
 # get what type of shape a Quadrilateral is from line lengths and slopes
 
-from helper import get_sint, sint, gcd
+from helper import get_sint
 
 def sq(x):
     return (x)**2
@@ -9,23 +9,6 @@ def sqrt(x):
     if x < 0:
         raise Exception("Can not square root negitive number %s" % x)
     return (x)**0.5
-
-def slp(p1, p2, pre):
-    x1, y1 = p1
-    x2, y2 = p2
-    try:
-        m = sint((y2-y1)/(x2-x1))
-    except ZeroDivisionError:
-        m = float("NaN")
-    print("%s: (%s-%s)/(%s-%s) = %s" % (pre, y2, y1, x2, x1, m))
-    return m
-
-def dis(p1, p2, pre):
-    x1, y1 = p1
-    x2, y2 = p2
-    d = sint(sqrt(sq(x2-x1) + sq(y2-y1)))
-    print("%s: sqrt(sq(%s-%s)+sq(%s-%s)) = %s" % (pre, x2, x1, y2, y1, d))
-    return d
 
 al, bl, cl, dl = list((input("letters: ") or "abcd").upper())
 
