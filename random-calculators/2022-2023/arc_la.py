@@ -1,7 +1,7 @@
+# get ark lenght and area from raidus and angle
+
 from helper import get_sint, sint
 from math import pi
-
-
 
 while True:
     radius = get_sint("Radius")

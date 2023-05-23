@@ -1,3 +1,5 @@
+# mid point furmula
+
 from helper import sint, get_point
 
 

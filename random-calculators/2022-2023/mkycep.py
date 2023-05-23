@@ -1,3 +1,5 @@
+# get line between 2 points
+
 from helper import sint, gcd, get_point
 
 def slp(x1, y1, x2, y2):

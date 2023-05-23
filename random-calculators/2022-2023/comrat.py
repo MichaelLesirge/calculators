@@ -1,3 +1,5 @@
+# get if 2 triangles have similar ratios
+
 from helper import get_sint, sint, gcd, simplify
 
 def s(x):

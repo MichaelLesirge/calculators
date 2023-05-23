@@ -1,3 +1,5 @@
+# get point on line with given x or y
+
 from helper import get_sint, sint
 
 while True:

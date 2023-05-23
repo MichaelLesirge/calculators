@@ -1,3 +1,5 @@
+# Check if 2 lines are parrels or perpendicular
+
 from helper import sint, gcd, get_point
 
 def slp(x1, y1, x2, y2):

@@ -1,3 +1,5 @@
+# get what type of shape a Quadrilateral is from line lengths and slopes
+
 from helper import get_sint, sint, gcd
 
 def sq(x):

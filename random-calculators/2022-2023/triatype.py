@@ -1,3 +1,5 @@
+# check if a triangle is acute, obtuse, or right
+
 from helper import get_sint
 
 while True:

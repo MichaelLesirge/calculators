@@ -1,3 +1,5 @@
+# get what type of shape a Quadrilateral is from the 4 points
+
 from helper import get_point, sint, gcd
 
 def sq(x):

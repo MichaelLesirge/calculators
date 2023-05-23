@@ -1,3 +1,5 @@
+# get distances between triangle points
+
 from helper import sint, get_point
 
 def sq(x):

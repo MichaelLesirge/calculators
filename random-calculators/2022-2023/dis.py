@@ -1,5 +1,6 @@
-from helper import sint, get_point
+# Distance formula
 
+from helper import sint, get_point
 
 def sq(x):
     return (x)**2
