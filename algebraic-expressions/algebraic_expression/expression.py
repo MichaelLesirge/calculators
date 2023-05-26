@@ -27,10 +27,10 @@ class Expression:
     algebraic expression class
     contains a list of terms
     """
-    simplfy = True
-    sort = True
+    should_simplfy_terms = True
+    should_sort_terms = True
 
-    def __init__(self, value="", *, terms=None, combine_terms=simplfy, sort=sort):
+    def __init__(self, value="", *, terms=None, combine_terms=should_simplfy_terms, sort=should_sort_terms):
         # terms = list(terms or ())
         if terms:
             terms = [Term(term) for term in terms]
@@ -336,16 +336,16 @@ def order(terms: list[Term]) -> list[Term]:
 
 
 def combine_like_terms(terms: list["Term"]) -> list["Term"]:
-    d = {}
+    seen = {}
     new = []
     i = 0
     for term in terms:
         hash_dict = tuple(term.bases_exponents.items())
-        if hash_dict in d:
-            new[d[hash_dict]] += term
+        if hash_dict in seen:
+            new[seen[hash_dict]] += term
         elif not term.is_zero_term():
             new.append(term)
-            d[hash_dict] = i
+            seen[hash_dict] = i
             i += 1
 
     return new
