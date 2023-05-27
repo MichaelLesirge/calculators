@@ -39,7 +39,7 @@ class Expression:
 
         # might be good use for match case
         if isinstance(value, Expression):
-            self.terms = value.terms
+            terms = value.terms
         elif isinstance(value, str):
             terms.extend(parse_expression(value))
         elif isinstance(value, (int, float)):
@@ -300,7 +300,7 @@ class Expression:
             return self.terms != other.terms
         return True
 
-    def __getitem__(self, key: int | slice):
+    def __getitem__(self, key: int | slice) -> Term | "Expression":
         if isinstance(key, int):
             return self.terms[key]
         elif isinstance(key, slice):
