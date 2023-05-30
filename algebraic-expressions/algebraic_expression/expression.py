@@ -300,7 +300,7 @@ class Expression:
             return self.terms != other.terms
         return True
 
-    def __getitem__(self, key: int | slice) -> Term | "Expression":
+    def __getitem__(self, key: int | slice):
         if isinstance(key, int):
             return self.terms[key]
         elif isinstance(key, slice):
