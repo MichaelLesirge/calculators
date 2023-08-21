@@ -62,8 +62,6 @@ def main() -> None:
             
             while expression_var_value is None:
                 expression_var_value = next(outputs)
-                if expression_var_value is not None:
-                    print("while loop found")
             
             pool.terminate()
 
