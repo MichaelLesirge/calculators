@@ -185,7 +185,7 @@ class Expression:
             v.update(term.bases)
         return v
 
-    def set_equal(self, v: int|float) -> int:
+    def set_equal(self, v: int|float) -> "Expression":
         if len(self.unique_bases) != 1:
             raise ValueError("Expression must be have just 1 variable to use this method")
         return self.eval({next(iter(self.unique_bases)): v})
