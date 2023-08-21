@@ -96,12 +96,12 @@ class Expression:
             plus = True
         return final
 
-    def eval(self, variables: dict[str: int|float]) -> "Expression":
+    def eval(self, variables: dict[str: int|float]) -> int|float:
         """
         variables dict must contain all variables that are in equation
         runs the equation with eval and returns answer
         """
-        return Expression(eval(self.str_equation(), variables))
+        return eval(self.str_equation(), variables)
 
     def distribute(self, other) -> "Expression" or list["Expression"]:
         """
@@ -185,7 +185,7 @@ class Expression:
             v.update(term.bases)
         return v
 
-    def set_equal(self, v: int|float) -> "Expression":
+    def set_equal(self, v: int|float) -> int|float:
         if len(self.unique_bases) != 1:
             raise ValueError("Expression must be have just 1 variable to use this method")
         return self.eval({next(iter(self.unique_bases)): v})
