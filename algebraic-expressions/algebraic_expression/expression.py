@@ -27,15 +27,11 @@ class Expression:
     algebraic expression class
     contains a list of terms
     """
-    should_simplfy_terms = True
+    should_simplify_terms = True
     should_sort_terms = True
 
-    def __init__(self, value="", *, terms=None, combine_terms=should_simplfy_terms, sort=should_sort_terms):
-        # terms = list(terms or ())
-        if terms:
-            terms = [Term(term) for term in terms]
-        else:
-            terms = []
+    def __init__(self, value="", *, terms=None, combine_terms=should_simplify_terms, sort=should_sort_terms):
+        terms = [Term(term) for term in (terms or [])]
 
         # might be good use for match case
         if isinstance(value, Expression):
@@ -48,7 +44,7 @@ class Expression:
             raise Exception(f"invalid type {type(value)} for Expression")
 
         if combine_terms:
-            # combines all terms with same bases/exsponents
+            # combines all terms with same bases/exponents
             # example: combine_like_terms([6x**2, 3x, 6x, 3]) = [6x**2, 9x, 3]
             terms = combine_like_terms(terms)
 
@@ -56,7 +52,7 @@ class Expression:
             # sorts list of terms into standard form
             terms = order(terms)
 
-        # Expressions are imutable
+        # Expressions are immutable
         self.terms: tuple[Term] = tuple(terms)
 
     def copy(self):
@@ -142,7 +138,7 @@ class Expression:
     @cache
     def is_quadratic_equation(self):
         """
-        check if expression is quadractic equation: Ax**2+Bx+C
+        check if expression is quadratic equation: Ax**2+Bx+C
         """
         if (len(self) != 3) or (len(self[0].bases) != 1):
             return False
@@ -162,7 +158,7 @@ class Expression:
         x = (-B ± sqrt(B^2 - 4AC) / 2A
         """
         if not self.is_quadratic_equation:
-            raise Expression("Expression must be quadratic eqution")
+            raise Expression("Expression must be quadratic equation")
 
         a, b, c = [term.coefficient for term in self.terms]
 
@@ -197,7 +193,7 @@ class Expression:
     def _get_base(self) -> str:
         return self.unique_bases().pop()
 
-    def set_eqaul(self, v: int|float) -> int:
+    def set_equal(self, v: int|float) -> int:
         if self.unique_bases_count != 1:
             raise ValueError("Expression must be monomial to use this method")
         return self.eval({self._get_base: v})
@@ -330,7 +326,7 @@ def order(terms: list[Term]) -> list[Term]:
     new = []
     for letter in sorted(letters.keys()):
         new.extend(sorted(letters[letter],
-                          key=lambda lterm: lterm.bases_exponents[letter] if letter != '~' else lterm.coefficient,
+                          key=lambda term: term.bases_exponents[letter] if letter != '~' else term.coefficient,
                           reverse=True))
     return new
 
