@@ -61,7 +61,7 @@ def main() -> None:
             outputs = pool.imap_unordered(stared_find_value, [(expression, answer, start_val, start_val + chunk_size, num_of_decimals) for start_val in range(floor(min_possible), ceil(max_possible), chunk_size)])
             
             while expression_var_value is None:
-                expression_var_value = next(outputs)
+                expression_var_value = next(outputs, "No valid value found")
             
             pool.terminate()
 
