@@ -14,10 +14,12 @@ sqrt = functools.cache(sqrt)
 
 class Config:
     NUM_RANGE = range(1, 21)
-    NUMS = [7, 12, 2, 4]
+    NUMS = [6, 8, 3, 5]
 
-    BINARY_OPS = ["+", "-", "*", "/", "**"]
-    UNARY_OPS = ["%s", "-%s", "sqrt(%s)", "-sqrt(%s)"]
+    # BINARY_OPS = ["+", "-", "*", "/", "**"]
+    # UNARY_OPS = ["%s", "-%s", "sqrt(%s)", "-sqrt(%s)"]
+    BINARY_OPS = ["+", "-", "*", "/"]
+    UNARY_OPS = ["%s", "-%s"]
 
 import itertools
 
