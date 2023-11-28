@@ -1,3 +1,3 @@
-# Random calcultors
+# Random calculators
 
-Random calcultors I made for math class.
+Random calculators I made for math class.
