@@ -10,5 +10,5 @@ while True:
     for x in range(start, stop):
         total_sum += eval(eq, {"X": x, "x": x})
         
-    print(total_sum)
+    print(sint(total_sum))
     print()
