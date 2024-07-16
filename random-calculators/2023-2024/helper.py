@@ -17,11 +17,13 @@ def simplify(x, y):
   divisor = gcd(x, y)
   return (x / divisor, y / divisor)
 
-NO_DEFAULT = object()
-def get_sint(prompt, default = NO_DEFAULT):
-    # i know its bad
-    value = input(prompt + ("" if default == NO_DEFAULT else " (default %s)" % default) + ": ")
-    if (value == "" and default != NO_DEFAULT): value = repr(default)
+class DEFAULT: pass
+def get_sint(prompt, default = DEFAULT):
+    # i know its bad, for some reason stuff only works on calculator like this
+    if (default is not DEFAULT):
+        prompt += " (default " + str(default) + ")"
+    value = input(prompt + ": ")
+    if (value == "" and default != DEFAULT): value = str(default)
     return sint(eval(value))
 
 def get_point(point_num, prefix=""):
