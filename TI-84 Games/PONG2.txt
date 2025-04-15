@@ -20,21 +20,21 @@ ClrHome
 
 Disp "Two player pong game
 Disp "
-Disp "Player 1 uses '7' and '1'
-Disp "Player 2 uses '9' and '4'
+Disp "P1 uses '7' and '1'
+Disp "P2 uses '9' and '4'
 Disp "
 Disp "View score on top
 Disp "First to "+toString(S)+" wins"
 Disp "
 
 If A=0:Then
-Input "PLAYER ONE PADDLE SIZE:",A
+Input "P1 PADDLE SIZE: ",A
 min(M-1,A→A
 max(1,A→A
 End
 
 If B=0:Then
-Input "PLAYER TWO PADDLE SIZE:",B
+Input "P2 PADDLE SIZE: ",B
 min(M-1,B→B
 max(1,B→B
 End
@@ -147,7 +147,7 @@ If (Y≤1 or Y≥M)
 
 :"--BALL BOUNCE PLAYER
 
-If ((X+H=1+G and Y≥L and Y<L+A) or (X+H=N-G and Y≥R and Y<R+B)):Then
+If ((X+H=G and Y≥L and Y<L+A) or (X+H=J and Y≥R and Y<R+B)):Then
 ­H→H
 O+1→O
 End
@@ -156,7 +156,7 @@ End
 Output(Y,X," 
 
 :"prevent intersection
-If 0=((X+H=1+G and Y+V≥L and Y+V<L+A) or (X+H=N-G and Y+V≥R and Y+V<R+B))
+If 0=((X+H=G and Y+V≥L and Y+V<L+A) or (X+H=J and Y+V≥R and Y+V<R+B))
 X+H→X
 
 Y+V→Y
@@ -167,7 +167,7 @@ End
 T+1→T
 End
 
-Output(M/2-1,int((N-20)/2)+1,"Player "+toString(W)+" Wins Round!"
+Output(M/2-1,int((N-20)/2)+1,"P"+toString(W)+" Wins Round!"
 Output(M/2+1,int((N-5)/2)+1,toString(C)+" - "+toString(D)
 
 0→T
@@ -186,7 +186,7 @@ Output(1,1+4,C
 Output(1,N-4,D
 
 Output(M/2-2,int((N-10)/2)+1,"Game Over!
-Output(M/2+2,int((N-14)/2)+1,"Player "+toString(W)+" Wins!
+Output(M/2+2,int((N-14)/2)+1,"P"+toString(W)+" Wins!
 Output(M/2,int((N-22)/2)+1,"Press 5 to play again.
 
 getKey→K
