@@ -11,8 +11,8 @@
 
 10→S :"WinningScore
 
-1→G :"WallOffset
-
+2→G :"Left Player X
+N-2→J :"Right Player X
 
 :"START
 
@@ -82,11 +82,11 @@ round((M-B)/2,0)→R :"R Player Y
 :"-INIT DRAW
 
 For(I,0,A-1
-Output(L+I,1+G,"|
+Output(L+I,G,"|
 End
 
 For(I,0,B-1
-Output(R+I,N-G,"|
+Output(R+I,J,"|
 End
 
 :"-ROUND LOOP
@@ -95,28 +95,32 @@ While W=0
 :"--PLAYER ACTION
 getKey→K
 
+If K:Then
+
 If K=72 and L>1:Then
-Output(L+A-1,1+G," 
+Output(L+A-1,G," 
 L-1→L
-Output(L,1+G,"|
+Output(L,G,"|
 End
 
 If K=92 and L<M-A+1:Then
-Output(L,1+G," 
+Output(L,G," 
 L+1→L
-Output(L+A-1,1+G,"|
+Output(L+A-1,G,"|
 End
 
 If K=74 and R>1:Then
-Output(R+B-1,N-G," 
+Output(R+B-1,J," 
 R-1→R
-Output(R,N-G,"|
+Output(R,J,"|
 End
 
 If K=94 and R<M-B+1:Then
-Output(R,N-G," 
+Output(R,J," 
 R+1→R
-Output(R+B-1,N-G,"|
+Output(R+B-1,J,"|
+End
+
 End
 
 :"--WIN DETECTION
