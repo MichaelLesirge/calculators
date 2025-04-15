@@ -1,6 +1,7 @@
 :"CONSTANTS
 
-3→E :"TicksBetweenBallMovement
+3→E :"Default Ticks Between Ball Movement
+3→F :"Bounces till speed up
 
 26→N :"ScreenWidth
 10→M :"ScreenHeight
@@ -12,7 +13,6 @@
 
 1→G :"WallOffset
 
-1→G :"WallOffset
 
 :"START
 
@@ -56,21 +56,27 @@ ClrHome
 
 :"-INIT ROUND
 
+:"start ball in middle
 (N/2)→X :"Ball X
 (M/2)→Y :"Ball Y 
+
+:"random starting direction
 (randInt(0,1)*2-1)→H :"Ball dX
 (randInt(0,1)*2-1)→V :"Ball dY
 
+:"send ball towards last loser
 If W=1
 1→H
 
 If W=2
 ­1→H
 
+:"start players in middle
 round((M-A)/2,0)→L :"L Player Y
 round((M-B)/2,0)→R :"R Player Y
 
 0→W :"Winner
+0→O :"Player Bounces
 0→T :"Ticks
 
 :"-INIT DRAW
@@ -127,11 +133,9 @@ End
 :"--SCORE BOARD
 Output(1,1+4,C
 Output(1,N-4,D
-:"Output(1,1+4,toString(X)+" 
-:"Output(1,N-4,toString(Y)+" 
 
 :"--BALL UPDATE
-If remainder(T,max(round(E-(T/100),0),1))=0 and W=0:Then
+If remainder(T,max(E-int(O/max(F,1)),1))=0 and W=0:Then
 
 :"--BALL BOUNCE TOP/BOTTOM
 If (Y≤1 or Y≥M)
@@ -139,8 +143,10 @@ If (Y≤1 or Y≥M)
 
 :"--BALL BOUNCE PLAYER
 
-If ((X+H=1+G and Y≥L and Y<L+A) or (X+H=N-G and Y≥R and Y<R+B))
+If ((X+H=1+G and Y≥L and Y<L+A) or (X+H=N-G and Y≥R and Y<R+B)):Then
 ­H→H
+O+1→O
+End
 
 :"--BALL UPDATE AND DRAW
 Output(Y,X," 
