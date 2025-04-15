@@ -2,13 +2,15 @@
 
 3→E :"TicksBetweenBallMovement
 
-03→A :"L Size
-03→B :"R Size
-
 26→N :"ScreenWidth
 10→M :"ScreenHeight
 
+00→A :"L Size (0 is blank)
+00→B :"R Size (0 is blank)
+
 10→S :"WinningScore
+
+1→G :"WallOffset
 
 1→G :"WallOffset
 
@@ -25,13 +27,17 @@ Disp "View score on top
 Disp "First to "+toString(S)+" wins"
 Disp "
 
+If A=0:Then
 Input "PLAYER ONE PADDLE SIZE:",A
-min(M,A→A
+min(M-1,A→A
 max(1,A→A
+End
 
+If B=0:Then
 Input "PLAYER TWO PADDLE SIZE:",B
-min(M,B→B
+min(M-1,B→B
 max(1,B→B
+End
 
 :"LOADING
 ClrHome
