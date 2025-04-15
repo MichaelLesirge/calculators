@@ -1,6 +1,3 @@
-:"SOURCE CODE FOR TWO PLAYER PONG GAME FOR TI-84 GRAPHING CALCULATOR
-:"This version was entirely created by me
-
 :"CONSTANTS
 
 3→E :"TicksBetweenBallMovement
@@ -19,15 +16,27 @@
 
 ClrHome
 
-Disp "Loading...
+Disp "Two player pong game
 Disp "
-Disp "Player 1 (Left) uses '7' and '1'
-Disp "Player 2 (Right) uses '9' and '4'
+Disp "Player 1 uses '7' and '1'
+Disp "Player 2 uses '9' and '4'
 Disp "
-Disp "Score displayed at top of screen
+Disp "View score on top
 Disp "First to "+toString(S)+" wins"
+Disp "
 
-Wait 0.1
+Input "PLAYER ONE PADDLE SIZE:",A
+min(M,A→A
+max(1,A→A
+
+Input "PLAYER TWO PADDLE SIZE:",B
+min(M,B→B
+max(1,B→B
+
+:"LOADING
+ClrHome
+Disp "Loading...
+ClrHome
 
 :"MATCH INIT
 0→C :"L Score
