@@ -22,20 +22,25 @@ def equation_roots( a, b, c):
  
     # calculating discriminant using formula
     dis = (b ** 2) - (4 * a * c) 
-    sqrt_val = math.sqrt(abs(dis)) 
+    sqrt_dis = math.sqrt(abs(dis)) 
+     
+    neg_b = sint(-b)
+    two_a = sint(2 * a)
      
     # checking condition for discriminant
     if dis > 0: 
         print("real and different roots:") 
-        print(sint(-b + sqrt_val), "/" ,sint(2 * a)) 
-        print(sint(-b - sqrt_val), "/" ,sint(2 * a)) 
+        print(sint(neg_b + sqrt_dis), "/" , two_a) 
+        print(sint(neg_b - sqrt_dis), "/" , two_a) 
+        # print("gcd")
         input("divide?")
-        print(sint(-b + sqrt_val) / sint(2 * a)) 
-        print(sint(-b - sqrt_val) / sint(2 * a)) 
+        print(sint(neg_b + sqrt_dis) /  two_a) 
+        print(sint(neg_b - sqrt_dis) /  two_a) 
      
     elif dis == 0: 
         print("real and same roots:") 
         print(sint(-b), "/", sint(2 * a)) 
+        # print("gcd") 
         input("divide?")
         print(sint(-b) / sint(2 * a)) 
      
@@ -43,12 +48,10 @@ def equation_roots( a, b, c):
     elif dis < 0:
         print("Complex Roots") 
         dis = sint(abs(dis))
-        neg_b = sint(-b)
-        two_a = sint(2 * a)
         print("(", neg_b, "+ i sqrt(", dis, ")", ") /", two_a) 
         print("(", neg_b, "- i sqrt(", dis, ") /", two_a) 
         
-        input("simplify radical")
+        input("simplify radical", dis)
         coefficient, squared_rooted = simply_radical(int(dis))
         coefficient = sint(coefficient)
         squared_rooted = sint(squared_rooted)
@@ -56,8 +59,10 @@ def equation_roots( a, b, c):
         print("(", neg_b, "-", coefficient , "i sqrt(", squared_rooted, ") /", two_a)
         
         gcd = find_gcd(neg_b, coefficient, two_a)
+        if neg_b < 0 and coefficient < 0 and two_a < 0:
+            gcd *= -1
         if gcd != 1:
-            input("gcd")
+            input("gcd", gcd)
             neg_b = sint(neg_b / gcd)
             coefficient = sint(coefficient / gcd)
             two_a = sint(two_a / gcd)
@@ -81,10 +86,16 @@ def find_gcd(x, *nums):
     while y:
         x, y = y, x % y
     return abs(find_gcd(x, *new_nums))
- 
+
+first = True 
 while True:
     # Driver Program 
-    a, b, c = parse_input(input("Enter equation: "))
+    print("ax^2+bx+c=0")
+    if first:
+        print("enter as a+b+c")
+        first = False
+        
+    a, b, c = parse_input(input("equation: "))
 
     # If a is 0, then incorrect equation
     if a == 0: 
