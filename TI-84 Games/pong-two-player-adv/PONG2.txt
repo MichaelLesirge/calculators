@@ -12,7 +12,7 @@
 10→S :"WinningScore
 
 2→G :"Left Player X
-N-2→J :"Right Player X
+N-1→J :"Right Player X
 
 :"START
 
@@ -29,13 +29,13 @@ Disp "
 
 If A=0:Then
 Input "P1 PADDLE SIZE: ",A
-min(M-1,A→A
+min(M,A→A
 max(1,A→A
 End
 
 If B=0:Then
 Input "P2 PADDLE SIZE: ",B
-min(M-1,B→B
+min(M,B→B
 max(1,B→B
 End
 
@@ -72,8 +72,8 @@ If W=2
 ­1→H
 
 :"start players in middle
-round((M-A)/2,0)→L :"L Player Y
-round((M-B)/2,0)→R :"R Player Y
+int((M-A)/2)+1→L :"L Player Y
+int((M-B)/2)+1→R :"R Player Y
 
 0→W :"Winner
 0→O :"Player Bounces
@@ -88,6 +88,10 @@ End
 For(I,0,B-1
 Output(R+I,J,"|
 End
+
+:"score board
+Output(1,1+4,C
+Output(1,N-4,D
 
 :"-ROUND LOOP
 While W=0
@@ -134,12 +138,12 @@ If X=N:Then
 C+1→C
 End
 
-:"--SCORE BOARD
-Output(1,1+4,C
-Output(1,N-4,D
-
 :"--BALL UPDATE
 If remainder(T,max(E-int(O/max(F,1)),1))=0 and W=0:Then
+
+:"score board
+Output(1,1+4,C
+Output(1,N-4,D
 
 :"--BALL BOUNCE TOP/BOTTOM
 If (Y≤1 or Y≥M)
@@ -167,7 +171,7 @@ End
 T+1→T
 End
 
-Output(M/2-1,int((N-20)/2)+1,"P"+toString(W)+" Wins Round!"
+Output(M/2-1,int((N-14)/2)+1,"P"+toString(W)+" Wins Round!"
 Output(M/2+1,int((N-5)/2)+1,toString(C)+" - "+toString(D)
 
 0→T
@@ -186,7 +190,7 @@ Output(1,1+4,C
 Output(1,N-4,D
 
 Output(M/2-2,int((N-10)/2)+1,"Game Over!
-Output(M/2+2,int((N-14)/2)+1,"P"+toString(W)+" Wins!
+Output(M/2+2,int((N-8)/2)+1,"P"+toString(W)+" Wins!
 Output(M/2,int((N-22)/2)+1,"Press 5 to play again.
 
 getKey→K
