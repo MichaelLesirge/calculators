@@ -1,4 +1,4 @@
-from math import sqrt
+from math import *
 
 # random helper methods
 
@@ -17,8 +17,14 @@ def simplify(x, y):
   divisor = gcd(x, y)
   return (x / divisor, y / divisor)
 
-def get_sint(prompt):
-    return sint(eval(input(prompt + ": "), {"sqrt": sqrt}))
+class DEFAULT: pass
+def get_sint(prompt, default = DEFAULT):
+    # i know its bad, for some reason stuff only works on calculator like this
+    if (default is not DEFAULT):
+        prompt += " (default " + str(default) + ")"
+    value = input(prompt + ": ")
+    if (value == "" and default != DEFAULT): value = str(default)
+    return sint(eval(value))
 
 def get_point(point_num, prefix=""):
     return get_sint("%sx%s" % (prefix, point_num)), get_sint("%sy%s" % (prefix, point_num))

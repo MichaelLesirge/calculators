@@ -1,0 +1,201 @@
+:"CONSTANTS
+
+3→E :"Default Ticks Between Ball Movement
+3→F :"Bounces till speed up
+
+26→N :"ScreenWidth
+10→M :"ScreenHeight
+
+00→A :"L Size (0 is blank)
+00→B :"R Size (0 is blank)
+
+10→S :"WinningScore
+
+2→G :"Left Player X
+N-2→J :"Right Player X
+
+:"START
+
+ClrHome
+
+Disp "Two player pong game
+Disp "
+Disp "P1 uses '7' and '1'
+Disp "P2 uses '9' and '4'
+Disp "
+Disp "View score on top
+Disp "First to "+toString(S)+" wins"
+Disp "
+
+If A=0:Then
+Input "P1 PADDLE SIZE: ",A
+min(M-1,A→A
+max(1,A→A
+End
+
+If B=0:Then
+Input "P2 PADDLE SIZE: ",B
+min(M-1,B→B
+max(1,B→B
+End
+
+:"LOADING
+ClrHome
+Disp "Loading...
+ClrHome
+
+:"MATCH INIT
+0→C :"L Score
+0→D :"R Score
+
+:"MATCH LOOP
+
+While (C<S) and (D<S)
+
+ClrHome
+
+:"-INIT ROUND
+
+:"start ball in middle
+(N/2)→X :"Ball X
+(M/2)→Y :"Ball Y 
+
+:"random starting direction
+(randInt(0,1)*2-1)→H :"Ball dX
+(randInt(0,1)*2-1)→V :"Ball dY
+
+:"send ball towards last loser
+If W=1
+1→H
+
+If W=2
+­1→H
+
+:"start players in middle
+round((M-A)/2,0)→L :"L Player Y
+round((M-B)/2,0)→R :"R Player Y
+
+0→W :"Winner
+0→O :"Player Bounces
+0→T :"Ticks
+
+:"-INIT DRAW
+
+For(I,0,A-1
+Output(L+I,G,"|
+End
+
+For(I,0,B-1
+Output(R+I,J,"|
+End
+
+:"-ROUND LOOP
+While W=0
+
+:"--PLAYER ACTION
+getKey→K
+
+If K:Then
+
+If K=72 and L>1:Then
+Output(L+A-1,G," 
+L-1→L
+Output(L,G,"|
+End
+
+If K=92 and L<M-A+1:Then
+Output(L,G," 
+L+1→L
+Output(L+A-1,G,"|
+End
+
+If K=74 and R>1:Then
+Output(R+B-1,J," 
+R-1→R
+Output(R,J,"|
+End
+
+If K=94 and R<M-B+1:Then
+Output(R,J," 
+R+1→R
+Output(R+B-1,J,"|
+End
+
+End
+
+:"--WIN DETECTION
+If X=1:Then
+2→W
+D+1→D
+End
+
+If X=N:Then
+1→W
+C+1→C
+End
+
+:"--SCORE BOARD
+Output(1,1+4,C
+Output(1,N-4,D
+
+:"--BALL UPDATE
+If remainder(T,max(E-int(O/max(F,1)),1))=0 and W=0:Then
+
+:"--BALL BOUNCE TOP/BOTTOM
+If (Y≤1 or Y≥M)
+­V→V
+
+:"--BALL BOUNCE PLAYER
+
+If ((X+H=G and Y≥L and Y<L+A) or (X+H=J and Y≥R and Y<R+B)):Then
+­H→H
+O+1→O
+End
+
+:"--BALL UPDATE AND DRAW
+Output(Y,X," 
+
+:"prevent intersection
+If 0=((X+H=G and Y+V≥L and Y+V<L+A) or (X+H=J and Y+V≥R and Y+V<R+B))
+X+H→X
+
+Y+V→Y
+Output(Y,X,"O
+
+End
+
+T+1→T
+End
+
+Output(M/2-1,int((N-20)/2)+1,"P"+toString(W)+" Wins Round!"
+Output(M/2+1,int((N-5)/2)+1,toString(C)+" - "+toString(D)
+
+0→T
+getKey→K
+While (T<150 and K≠83 and K≠105)
+T+1→T
+getKey→K
+End
+
+End
+
+ClrHome
+
+:"--REDRAW SCORE BOARD
+Output(1,1+4,C
+Output(1,N-4,D
+
+Output(M/2-2,int((N-10)/2)+1,"Game Over!
+Output(M/2+2,int((N-14)/2)+1,"P"+toString(W)+" Wins!
+Output(M/2,int((N-22)/2)+1,"Press 5 to play again.
+
+getKey→K
+While K=0
+getKey→K
+End
+
+If K=83
+prgmPONG2
+
+ClrHome
+Disp "PONG by ML
